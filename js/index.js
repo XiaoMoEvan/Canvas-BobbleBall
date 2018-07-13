@@ -86,5 +86,23 @@
       console.log('%c 哦嚯，完蛋！结果最后前端生涯亡。', 'color:#FF5722');
       console.log('%c =========================================', 'color:#FFB800');
       console.log('%c 二颜（一只徘徊在学习边沿的菜鸡）', 'color:#01AAED');
+      console.log("    ");
+      console.log('%c 运行时间：' + getCurrDate(), 'color:#D9B3E6');
   }
   warnYourself();
+
+  //获取当前时间
+  function getCurrDate() {
+      var _date = new Date();
+      var _newDate =
+          _date.getFullYear() + "年" +
+          fullNumber((_date.getMonth() + 1)) + "月" +
+          fullNumber(_date.getDate()) + "日 " +
+          fullNumber(_date.getHours()) + ":" +
+          fullNumber(_date.getMinutes());
+      return _newDate;
+  }
+
+  function fullNumber(parm) {
+      return parm < 10 ? "0" + parm : parm;
+  }
