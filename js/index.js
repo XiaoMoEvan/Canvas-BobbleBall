@@ -61,3 +61,12 @@
           item.move();
       }
   }, _babbleBallRunTime)
+
+
+  function warnYourself() {
+      console.log('%c 前端小白者（Me）:UI框架王、插件王、复制粘贴王...', 'color:#009688');
+      console.log('%c 哦嚯，完蛋！结果最后前端生涯亡。', 'color:#FF5722');
+      console.log('%c =========================================', 'color:#FFB800');
+      console.log('%c 二颜（一只徘徊在学习边沿的菜鸡）', 'color:#01AAED');
+  }
+  warnYourself();
