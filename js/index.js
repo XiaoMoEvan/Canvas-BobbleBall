@@ -1,7 +1,9 @@
   var w, h, $babbleBall = document.querySelector(".babbleBall"),
       _babbleBallCon, _colors = [],
       _babbleBallRunTime = 1000 / 60,
-      _babbleBallArr = [];
+      _babbleBallArr = [],
+      _mouseTop = 0,
+      _mouseLeft = 0;
   ~~ function setSize() {
       window.onresize = arguments.callee;
       w = window.innerWidth;
@@ -26,6 +28,9 @@
           this.color = _colors[Math.floor(random(0, 5))];
           this.vx = random(-1, 1);
           this.vy = random(-1, 1);
+          this.preR = this.r;
+          this.vr = 2;
+          this.maxR = 30;
       },
       draw: function() {
           _babbleBallCon.beginPath();
@@ -41,6 +46,15 @@
           }
           if ((this.y - this.r) < 0 || (this.y + this.r) > h) {
               this.vy = -this.vy;
+          }
+          var inVertical = Math.abs(this.y - _mouseTop);
+          var inHorizontal = Math.abs(this.x - _mouseLeft);
+          if ((this.r < this.maxR) && (inVertical < 66) && (inHorizontal < 66)) {
+              this.r += this.vr;
+          }
+          if ((this.r > this.preR) && ((inVertical > 66) || (inHorizontal > 66))) {
+              this.r -= this.vr;
+              if (this.r < 0) this.r = random(1, 3);
           }
           this.draw();
       }
@@ -62,6 +76,10 @@
       }
   }, _babbleBallRunTime)
 
+  document.body.addEventListener("mousemove", function(e) {
+      _mouseTop = e.clientY;
+      _mouseLeft = e.clientX;
+  });
 
   function warnYourself() {
       console.log('%c 前端小白者（Me）:UI框架王、插件王、复制粘贴王...', 'color:#009688');
